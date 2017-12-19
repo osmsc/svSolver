@@ -153,6 +153,7 @@ SV_USE_VTK = 1
 
 SV_USE_SPARSE = 1
 SV_USE_METIS = 1
+SV_USE_PARMETIS = 1
 SV_USE_NSPCG = 1
 
 # -----------------------------------------------------
@@ -454,6 +455,17 @@ ifeq ($(SV_USE_METIS),1)
   METIS_TOP = $(TOP)/../Code/ThirdParty/metis
   METIS_INCDIR  = -I $(METIS_TOP)
   METIS_LIBS    = $(SVLIBFLAG)_simvascular_thirdparty_metis$(LIBLINKEXT)
+endif
+
+# --------
+# ParMetis
+# --------
+
+ifeq ($(SV_USE_PARMETIS),1)
+  THIRD_PARTY_LIBDIRS += ../Code/ThirdParty/parmetis
+  PARMETIS_TOP = $(TOP)/../Code/ThirdParty/parmetis
+  PARMETIS_INCDIR  = -I $(PARMETIS_TOP) -I $(PARMETIS_TOP)/simvascular_parmetis/ParMETISLib
+  PARMETIS_LIBS    = $(SVLIBFLAG)_simvascular_thirdparty_parmetis$(LIBLINKEXT)
 endif
 
 

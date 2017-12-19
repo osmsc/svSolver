@@ -14,6 +14,12 @@
 
 #include"parmetislib.h"
 
+#ifdef SV_WRAP_FORTRAN_IN_CAPS_NO_UNDERSCORE
+  #define split_ SPLIT
+#elif SV_WRAP_FORTRAN_IN_LOWERCASE_WITH_UNDERSCORE
+  #define split_ split_
+#endif
+
 int split_(int *nElptr, int *eNoNptr, int *eNoNbptr, int *IEN, 
    int *nPartsPtr, idxtype *iElmdist, float *iWgt, idxtype *part)
 {
@@ -124,7 +130,13 @@ int split_(int *nElptr, int *eNoNptr, int *eNoNbptr, int *IEN,
 #include <mach/clock.h>
 #include <mach/mach.h>
 #endif
- 
+
+#ifdef WIN32
+double cput_()
+{
+  return 0.0;
+}
+#else  
 double cput_()
 {
    struct timespec time;
@@ -146,4 +158,5 @@ double cput_()
 
    return res;
 }
- 
+#endif
+
