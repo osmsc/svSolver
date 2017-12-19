@@ -469,6 +469,9 @@ ifeq ($(SV_USE_SOURCE_CODE_SVLS),1)
     SVLS_DEFS   = 
     SVLS_INCDIR = -I ../svLS
     SVLS_LIBS   = $(SVLIBFLAG)_simvascular_svLS_$(MPI_NAME)$(LIBLINKEXT)
+    SVLS_FSI_DEFS   = 
+    SVLS_FSI_INCDIR = -I ../svLS-FSI
+    SVLS_FSI_LIBS   = $(SVLIBFLAG)_simvascular_svLS-FSI_$(MPI_NAME)$(LIBLINKEXT)
 endif
 
 # -----

@@ -34,7 +34,8 @@ OBJ_DIR ?= $(BUILD_DIR)
 
 OBJS    ?= $(addprefix $(OBJ_DIR)/,$(CXXSRCS:.cxx=.$(OBJECTEXT))) \
            $(addprefix $(OBJ_DIR)/,$(CSRCS:.c=.$(OBJECTEXT))) \
-           $(addprefix $(OBJ_DIR)/,$(FSRCS:.f=.$(OBJECTEXT)))
+           $(addprefix $(OBJ_DIR)/,$(FSRCS:.f=.$(OBJECTEXT))) \
+           $(addprefix $(OBJ_DIR)/,$(F90SRCS:.f90=.$(OBJECTEXT)))
 
 DLLOBJS  ?= $(addprefix $(OBJ_DIR)/,$(DLLSRCS:.cxx=.$(OBJECTEXT))) $(OBJS)
 DLLOBJS2 ?= $(addprefix $(OBJ_DIR)/,$(DLLSRCS2:.cxx=.$(OBJECTEXT)))
