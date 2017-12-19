@@ -123,9 +123,11 @@
             Amat(i,j) = CMPLX(A(i,j))
          END DO
       END DO
-      
-      CALL ZGEEV('N', 'N', nd, Amat, nd, b, DUMMY, 1, DUMMY, 1, WORK,
-     2   2*nd, WORK, iok)
+!  HACK - no LAPACK!
+!      CALL ZGEEV('N', 'N', nd, Amat, nd, b, DUMMY, 1, DUMMY, 1, WORK,
+!     2   2*nd, WORK, iok)
+      iok = - 1
+!
       IF (iok .NE. 0) THEN
          WRITE(*,'(A)') "Failed to compute eigen values"
          CALL STOPSIM()

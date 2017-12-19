@@ -12,6 +12,9 @@
  *
  */
 
+/* BEGIN SimVascular Changes */
+#include <stdlib.h>
+/* END SimVascular Changes */
 
 /*************************************************************************
 * The following macro returns a random number in the specified range

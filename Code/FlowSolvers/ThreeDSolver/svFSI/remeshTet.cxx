@@ -1,8 +1,14 @@
-    #include "tetgen.h"
+    #include "simvascular_tetgen.h"
     #include <iostream>
     #include <stdio.h>
     #include <stdlib.h>
-    
+
+#ifdef SV_WRAP_FORTRAN_IN_CAPS_NO_UNDERSCORE
+  #define remesh3d_tetgen_ REMESH3D_TETGEN
+#elif SV_WRAP_FORTRAN_IN_LOWERCASE_WITH_UNDERSCORE
+  #define remesh3d_tetgen_ remesh3d_tetgen_
+#endif
+
     class tetOptions {
       public:
          double maxRadRatio;

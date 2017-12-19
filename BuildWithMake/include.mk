@@ -156,6 +156,12 @@ SV_USE_METIS = 1
 SV_USE_PARMETIS = 1
 SV_USE_NSPCG = 1
 
+# -------------------------------------
+# Control inclusion of tetgen functions
+# -------------------------------------
+
+SV_USE_TETGEN = 1
+
 # -----------------------------------------------------
 # Compile with Optimization
 # -----------------------------------------------------
@@ -332,6 +338,10 @@ ifeq ($(CLUSTER), x64_macosx)
   endif
 endif
 
+ifeq ($(SV_USE_TETGEN),1)
+  GLOBAL_DEFINES += -DSV_USE_TETGEN
+endif
+
 # --------------------------------
 # build directory for object files
 # --------------------------------
@@ -430,6 +440,20 @@ endif
 # ***  (not free for commercial use)    ***
 # -----------------------------------------
 
+ifeq ($(SV_USE_TETGEN),1)
+# regular SV requires the _
+  SV_LIB_THIRDPARTY_TETGEN_NAME=_simvascular_thirdparty_tetgen
+  SV_LIB_THIRDPARTY_TETGEN_NAME=simvascular_thirdparty_tetgen
+  TETGEN150       = 1
+  GLOBAL_DEFINES += -DTETLIBRARY
+  THIRD_PARTY_LIBDIRS += ../Code/ThirdParty/tetgen
+  TETGEN_TOP = $(TOP)/../Code/ThirdParty/tetgen
+  TETGEN_INCDIR  = -I $(TETGEN_TOP)
+# HACK: fix this!
+#  TETGEN_LIBS    = $(SVLIBFLAG)$(SV_LIB_THIRDPARTY_TETGEN_NAME)$(LIBLINKEXT)
+  TETGEN_LIBS    = $(SVLIBFLAG)_simvascular_thirdparty_tetgen$(LIBLINKEXT)
+endif
+
 # ----
 # svLS
 # ----
@@ -464,8 +488,10 @@ endif
 ifeq ($(SV_USE_PARMETIS),1)
   THIRD_PARTY_LIBDIRS += ../Code/ThirdParty/parmetis
   PARMETIS_TOP = $(TOP)/../Code/ThirdParty/parmetis
-  PARMETIS_INCDIR  = -I $(PARMETIS_TOP) -I $(PARMETIS_TOP)/simvascular_parmetis/ParMETISLib
-  PARMETIS_LIBS    = $(SVLIBFLAG)_simvascular_thirdparty_parmetis$(LIBLINKEXT)
+  PARMETIS_INCDIR  = -I $(PARMETIS_TOP) -I $(PARMETIS_TOP)/simvascular_parmetis/ParMETISLib \
+                                        -I $(PARMETIS_TOP)/simvascular_parmetis/METISLib
+  PARMETIS_LIBS    = $(SVLIBFLAG)_simvascular_thirdparty_parmetis$(LIBLINKEXT) \
+                     $(SVLIBFLAG)_simvascular_thirdparty_parmetis_metis$(LIBLINKEXT)
 endif
 
 

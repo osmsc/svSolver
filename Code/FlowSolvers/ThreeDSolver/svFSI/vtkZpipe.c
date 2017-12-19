@@ -4,6 +4,18 @@
    #include <assert.h>
    #include "simvascular_zlib.h"
 
+#ifdef SV_WRAP_FORTRAN_IN_CAPS_NO_UNDERSCORE
+  #define defzlibdata_ DEFZLIBDATA
+#elif SV_WRAP_FORTRAN_IN_LOWERCASE_WITH_UNDERSCORE
+  #define defzlibdata_ defzlibdata_
+#endif
+
+#ifdef SV_WRAP_FORTRAN_IN_CAPS_NO_UNDERSCORE
+  #define infzlibdata_ INFZLIBDATA
+#elif SV_WRAP_FORTRAN_IN_LOWERCASE_WITH_UNDERSCORE
+  #define infzlibdata_ infzlibdata_
+#endif
+
    int inf ( unsigned char* in, int nin, unsigned char* out, int nout );
    int def ( unsigned char* in, int nin, unsigned char* out, int* nout, int level);	
    

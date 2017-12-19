@@ -486,8 +486,10 @@
      2      err = "Fatal! TetGen returned with error. Check log"
       
       ELSE IF (rmsh%method .EQ. RMSH_MESHSIM) THEN
-         CALL remesh3d_meshsim(lFa%nNo, lFa%nEl, lFa%x, lFa%IEN, 
-     2      rparams, iOK)
+! HACK NATE
+!         CALL remesh3d_meshsim(lFa%nNo, lFa%nEl, lFa%x, lFa%IEN, 
+!     2      rparams, iOK)
+         IOK = -1
          IF (iOK .LT. 0)
      2      err = "Fatal! MeshSim returned with error. Check log"
       ELSE
