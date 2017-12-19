@@ -14,7 +14,7 @@
       USE CMMOD
       USE CHNLMOD
 
-      INCLUDE "memLS.h"
+      INCLUDE "svLS.h"
       INCLUDE "cplBC.h"
 
 !--------------------------------------------------------------------
@@ -262,7 +262,7 @@
          INTEGER iFa
 !        The mesh index that corresponds to this BC
          INTEGER iM
-!        Pointer to memLS%bc
+!        Pointer to svLS%bc
          INTEGER lsPtr
 !        Defined steady value
          REAL(KIND=8) :: g = 0D0
@@ -416,8 +416,8 @@
          REAL(KIND=8) :: tol = 1D64
 !        Equation symbol
          CHARACTER(LEN=2) :: sym = "NA"
-!        memLS type of linear solver
-         TYPE(memLS_lsType) ls
+!        svLS type of linear solver
+         TYPE(svLS_lsType) ls
 !        BCs associated with this equation
          TYPE(bcType), ALLOCATABLE :: bc(:)
 !        domains that this equation must be solved
@@ -522,7 +522,7 @@
       INTEGER gtnNo
 !     Number of equations
       INTEGER nEq
-!     Number of faces in the LHS passed to memLS
+!     Number of faces in the LHS passed to svLS
       INTEGER nFacesLS
 !     Number of meshes
       INTEGER nMsh
@@ -603,8 +603,8 @@
       TYPE(cplBCType), SAVE :: cplBC
 !     All data related to equations are stored in this container
       TYPE(eqType), ALLOCATABLE :: eq(:)
-!     memLS data structure to produce LHS sparse matrix
-      TYPE(memLS_lhsType) lhs
+!     svLS data structure to produce LHS sparse matrix
+      TYPE(svLS_lhsType) lhs
 !     All the meshes are stored in this variable
       TYPE(mshType), ALLOCATABLE :: msh(:)
 !     Input/output to the screen is handled by this structure

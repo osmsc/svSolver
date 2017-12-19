@@ -57,7 +57,7 @@ FFLAGS   = $(GLOBAL_FFLAGS) $(MPI_INCDIR) $(METIS_INCDIR) $(SVLS_INCDIR) $(SVLS_
 # c headers here
 HDRS	= 
 
-CXXSRCS = remeshTet.cxx remeshSim.cxx
+#CXXSRCS = remeshTet.cxx remeshSim.cxx
 
 # for shape functions
 CSRCS    = vtkZpipe.c
@@ -114,6 +114,7 @@ DEPS	= $(CSRCS:.c=.d) $(CXXSRCS:.cxx=.d)
 
 OBJS    = $(addprefix $(BUILD_MPI_DIR)/,$(CXXSRCS:.cxx=.$(OBJECTEXT))) \
           $(addprefix $(BUILD_MPI_DIR)/,$(CSRCS:.c=.$(OBJECTEXT))) \
+          $(addprefix $(BUILD_MPI_DIR)/,$(F90SRCS:.f90=.$(OBJECTEXT))) \
           $(addprefix $(BUILD_MPI_DIR)/,$(FSRCS:.f=.$(OBJECTEXT)))
 
 TARGET_EXE_FULL = $(TOP)/Bin/svfsi-$(CXX_COMPILER_VERSION)-$(FORTRAN_COMPILER_VERSION)-$(MPI_NAME).exe

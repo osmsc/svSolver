@@ -23,7 +23,7 @@
       INTEGER :: iEq, ierr, gnnz, nnz, iDmn
       CHARACTER(LEN=stdL) :: fName
       REAL(KIND=8) :: am
-      TYPE(memLS_commuType) :: communicator
+      TYPE(svLS_commuType) :: communicator
       
       REAL(KIND=8), ALLOCATABLE, DIMENSION(:,:) :: s
       
@@ -129,16 +129,16 @@
       CALL MPI_ALLREDUCE(nnz, gnnz, 1, mpint, MPI_SUM, cm%com(), ierr)
       
       IF (resetSim) THEN
-         IF (communicator%foC) CALL memLS_COMMU_FREE(communicator)
-         IF (lhs%foC) CALL memLS_LHS_FREE(lhs)
+         IF (communicator%foC) CALL svLS_COMMU_FREE(communicator)
+         IF (lhs%foC) CALL svLS_LHS_FREE(lhs)
       END IF ! resetSim
       
       std = " Total number of non-zeros in the LHS matrix: "//gnnz
-      dbg = "Calling memLS_COMMU_CREATE"
-      CALL memLS_COMMU_CREATE(communicator, cm%com())
+      dbg = "Calling svLS_COMMU_CREATE"
+      CALL svLS_COMMU_CREATE(communicator, cm%com())
       
-      dbg = "Calling memLS_LHS_CREATE"
-      CALL memLS_LHS_CREATE(lhs, communicator, gtnNo, tnNo, nnz, ltg,
+      dbg = "Calling svLS_LHS_CREATE"
+      CALL svLS_LHS_CREATE(lhs, communicator, gtnNo, tnNo, nnz, ltg,
      2   rowPtr, colPtr, nFacesLS)
       
       IF (.NOT.resetSim) THEN
@@ -421,7 +421,7 @@
       END IF
       
 !     Deallocating sparse matrix structures
-      IF(lhs%foc) CALL memLS_LHS_FREE(lhs)
+      IF(lhs%foc) CALL svLS_LHS_FREE(lhs)
       
 !     Closing the output channels
       CALL std%close()

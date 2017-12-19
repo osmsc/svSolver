@@ -977,7 +977,7 @@
       USE ALLFUN
       IMPLICIT NONE
       INTEGER, INTENT(IN) :: ilsType
-      TYPE(memLS_lsType), INTENT(INOUT) :: ls
+      TYPE(svLS_lsType), INTENT(INOUT) :: ls
       TYPE(listType), INTENT(INOUT) :: list
 
       INTEGER lsType
@@ -994,13 +994,14 @@
             lsType = LS_TYPE_GMRES
          CASE('CG')
             lsType = LS_TYPE_CG
-         CASE('BICG')
-            lsType = LS_TYPE_BICGS
+! *** HACK NATE *** This name does not have a type (LS_TYPE_BICGS)        
+!         CASE('BICG')
+!            lsType = LS_TYPE_BICGS
          CASE DEFAULT
             err = TRIM(list%ping("LS type",lPL))//" Undefined type"
          END SELECT
       END IF
-      CALL memLS_LS_CREATE(ls, lsType)
+      CALL svLS_LS_CREATE(ls, lsType)
 
       IF (ASSOCIATED(lPL)) THEN
          lPtr => lPL%get(ls%RI%mItr,"Max iterations",ll=1)

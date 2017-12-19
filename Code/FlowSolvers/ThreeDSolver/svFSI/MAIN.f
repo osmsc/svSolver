@@ -174,9 +174,13 @@ c      INTEGER OMP_GET_NUM_THREADS, OMP_GET_THREAD_NUM
 
             dbg = "Solving equation <"//eq(cEq)%sym//">"
 !     Solving the linear system of equations
-            CALL memLS_SOLVE(lhs, eq(cEq)%ls, dof, R, Val, isS,
+! *** HACK!! NATE *** isS doesn't exist in svLS, so calling dummy routine here            
+!            CALL svLS_SOLVE(lhs, eq(cEq)%ls, dof, R, Val, isS,
+!     2         incL, res)
+            CALL svLS_SOLVE(lhs, eq(cEq)%ls, dof, R, Val,
      2         incL, res)
-            
+
+         
 !     Solution is obtained, now updating (Corrector)
             CALL PICC
             

@@ -2,7 +2,7 @@
    #include <stdio.h>
    #include <string.h>
    #include <assert.h>
-   #include "zlib.h"
+   #include "simvascular_zlib.h"
 
    int inf ( unsigned char* in, int nin, unsigned char* out, int nout );
    int def ( unsigned char* in, int nin, unsigned char* out, int* nout, int level);	

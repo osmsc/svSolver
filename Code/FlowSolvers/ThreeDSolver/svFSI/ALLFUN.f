@@ -247,7 +247,7 @@
          err = "COMMU is only specified for vector with size nNo"
       END IF
       U = MKC(U)
-      CALL memLS_COMMUS(lhs, U)
+      CALL svLS_COMMUS(lhs, U)
       CALL MKCI(U)
 
       RETURN
@@ -268,7 +268,7 @@
       END IF
 
       U = MKC(U)
-      CALL memLS_COMMUV(lhs, m, U)
+      CALL svLS_COMMUV(lhs, m, U)
       CALL MKCI(U)
 
       RETURN

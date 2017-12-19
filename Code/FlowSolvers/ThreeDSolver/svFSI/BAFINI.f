@@ -7,7 +7,7 @@
 !--------------------------------------------------------------------
 !      
 !     This routine initializes required structure for boundaries, 
-!     faces, those that interface with memLS and cplBC.
+!     faces, those that interface with svLS and cplBC.
 !      
 !--------------------------------------------------------------------
 
@@ -64,13 +64,13 @@
          IF (cplBC%schm .NE. cplBC_E) CALL CALCDERCPLBC
       END IF
 
-!     Setting up memLS
+!     Setting up svLS
       lsPtr = 0
       DO iEq=1, nEq
          DO iBc=1, eq(iEq)%nBc
             iFa = eq(iEq)%bc(iBc)%iFa
             iM  = eq(iEq)%bc(iBc)%iM
-            CALL memLSINI(eq(iEq)%bc(iBc), msh(iM)%fa(iFa), lsPtr)
+            CALL svLSINI(eq(iEq)%bc(iBc), msh(iM)%fa(iFa), lsPtr)
          END DO
       END DO
 
@@ -87,7 +87,7 @@
                gNodes(i) = a
             END IF
          END DO
-         CALL memLS_BC_CREATE(lhs, nFacesLS, i, nsd, BC_TYPE_Dir,gNodes)
+         CALL svLS_BC_CREATE(lhs, nFacesLS, i, nsd, BC_TYPE_Dir,gNodes)
       END IF
 
       RETURN
@@ -298,7 +298,7 @@
       RETURN
       END SUBROUTINE BCINI
 !--------------------------------------------------------------------
-      SUBROUTINE memLSINI(lBc, lFa, lsPtr)
+      SUBROUTINE svLSINI(lBc, lFa, lsPtr)
 
       USE COMMOD
       USE ALLFUN
@@ -339,7 +339,7 @@
                IF (lBc%eDrn(i) .NE. 0) sVl(i,:) = 0D0
             END DO
          END IF
-         CALL memLS_BC_CREATE(lhs, lsPtr, lFa%nNo, nsd, BC_TYPE_Dir, 
+         CALL svLS_BC_CREATE(lhs, lsPtr, lFa%nNo, nsd, BC_TYPE_Dir, 
      2      gNodes, sVl)
       ELSE IF (BTEST(lBc%bType,bType_Neu)) THEN
          IF (BTEST(lBc%bType,bType_res)) THEN
@@ -360,14 +360,14 @@
             END DO
             lsPtr     = lsPtr + 1
             lBc%lsPtr = lsPtr
-            CALL memLS_BC_CREATE(lhs, lsPtr, lFa%nNo, nsd, BC_TYPE_Neu, 
+            CALL svLS_BC_CREATE(lhs, lsPtr, lFa%nNo, nsd, BC_TYPE_Neu, 
      2         gNodes, sVl)
          ELSE
             lBc%lsPtr = 0
          END IF
       ELSE
-         err = "Unxpected bType in memLSINI"
+         err = "Unxpected bType in svLSINI"
       END IF
 
       RETURN
-      END SUBROUTINE memLSINI
+      END SUBROUTINE svLSINI
