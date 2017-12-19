@@ -42,68 +42,36 @@ TOP=../../../BuildWithMake
 
 include $(TOP)/include.mk
 
-ifeq ($(SV_USE_SOLVERIO),1)
-  THREED_LIB_DIRS = SolverIO
-else
-  THREED_LIB_DIRS =
-endif
-
-ifeq ($(SV_USE_DUMMY_MPI),1)
-  THREED_LIB_DIRS += dummyMPI
-endif
-
-ifeq ($(SV_USE_SOURCE_CODE_SVLS),1)
-	THREED_LIB_DIRS += svLS
-endif
-
-ifeq ($(SV_USE_DUMMY_SVLS),1)
-	THREED_LIB_DIRS += svLS 
-endif
-
-ifeq ($(SV_USE_THREEDSOLVER),1)
-	THREED_EXEC_DIRS += svSolver 
-endif
-
-ifeq ($(SV_USE_FSI_SOLVER),1)
-	THREED_EXEC_DIRS += svFSI 
-endif
-
-ifneq ($(EXCLUDE_ALL_BUT_THREEDSOLVER),1)
-  ifeq ($(SV_USE_PRESOLVER),1)
-	THREED_EXEC_DIRS += svPre
-  endif
-  ifeq ($(SV_USE_POSTSOLVER),1)
-	THREED_EXEC_DIRS += svPost
-  endif
-endif
+PARMETRIS_LIB_DIRS = simvascular_parmetis/METISLib \
+                     simvascular_parmetis/ParMETISLib
 
 lib:
-	@for i in ${THREED_LIB_DIRS}; do ( \
+	@for i in ${PARMETRIS_LIB_DIRS}; do ( \
 	  cd $$i; \
 	  $(MAKE)) ; done
 
 static:
-	@for i in ${THREED_EXEC_DIRS}; do ( \
+	@for i in ${PARMETRIS_LIB_DIRS}; do ( \
 	  cd $$i; \
 	  $(MAKE)) ; done
 
 shared:
-	@for i in ${THREED_EXEC_DIRS}; do ( \
+	@for i in ${PARMETRIS_LIB_DIRS}; do ( \
 	  cd $$i; \
 	  $(MAKE)) ; done
 
 clean:
-	for i in ${THREED_LIB_DIRS}; do ( \
+	for i in ${PARMETRIS_LIB_DIRS}; do ( \
 	  cd $$i; \
 	  $(MAKE) clean ) ; done
-	for i in ${THREED_EXEC_DIRS}; do ( \
+	for i in ${PARMETRIS_LIB_DIRS}; do ( \
 	  cd $$i; \
 	  $(MAKE) clean ) ; done
 
 veryclean: clean
-	for i in ${THREED_LIB_DIRS}; do ( \
+	for i in ${PARMETRIS_LIB_DIRS}; do ( \
 	  cd $$i; \
 	  $(MAKE) veryclean ) ; done
-	for i in ${THREED_EXEC_DIRS}; do ( \
+	for i in ${PARMETRIS_LIB_DIRS}; do ( \
 	  cd $$i; \
 	  $(MAKE) veryclean ) ; done
