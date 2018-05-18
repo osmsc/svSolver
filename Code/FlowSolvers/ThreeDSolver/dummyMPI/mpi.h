@@ -27,6 +27,16 @@
 # define MPI_MIN 3
 # define MPI_PRODUCT 4
 
+/* for parametis */
+#define MPI_2INT  0x4c000816
+#define MPI_MINLOC 0x5800000b
+#define MPI_FLOAT_INT 0x8c000000
+#define MPI_UNDEFINED      (-32766)
+
+/* svFSI */
+typedef int MPI_Group;
+/* end svFSI */
+
 #ifdef __cplusplus
 extern "C" {
 #endif

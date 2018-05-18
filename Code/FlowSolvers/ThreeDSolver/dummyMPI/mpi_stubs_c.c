@@ -2199,3 +2199,57 @@ double MPI_Wtime ( void )
 
   return value;
 }
+
+/* svFSI */
+
+int MPI_Alltoall(const void *sendbuf, int sendcount, MPI_Datatype sendtype,
+                 void *recvbuf, int recvcount, MPI_Datatype recvtype,
+                 MPI_Comm comm) {
+  int ierror;
+  ierror = MPI_SUCCESS;
+  return ierror;
+}
+
+int MPI_Alltoallv(const void *sendbuf, const int *sendcounts,
+                  const int *sdispls, MPI_Datatype sendtype, void *recvbuf,
+                  const int *recvcounts, const int *rdispls, MPI_Datatype recvtype,
+                  MPI_Comm comm) {
+  int ierror;
+  ierror = MPI_SUCCESS;
+  return ierror;
+}
+
+int MPI_Scatterv(const void *sendbuf, const int *sendcounts, const int *displs,
+                 MPI_Datatype sendtype, void *recvbuf, int recvcount,
+                 MPI_Datatype recvtype,
+                 int root, MPI_Comm comm) {
+  int ierror;
+  ierror = MPI_SUCCESS;
+  return ierror;
+}
+
+int MPI_Comm_group(MPI_Comm comm, MPI_Group *group) {
+  int ierror;
+  ierror = MPI_SUCCESS;
+  return ierror;
+}
+
+int MPI_Group_excl(MPI_Group group, int n, const int ranks[], MPI_Group *newgroup) {
+  int ierror;
+  ierror = MPI_SUCCESS;
+  return ierror;
+}
+
+int MPI_Comm_create(MPI_Comm comm, MPI_Group group, MPI_Comm *newcomm) {
+  int ierror;
+  ierror = MPI_SUCCESS;
+  return ierror;
+}
+
+int MPI_Group_free(MPI_Group *group) {
+  int ierror;
+  ierror = MPI_SUCCESS;
+  return ierror;
+}
+
+/* end svFSI */

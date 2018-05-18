@@ -1,4 +1,168 @@
-
+c
+      subroutine MPI_Comm_create(comm,group,newcomm)
+      implicit none
+      include 'mpi_stubs_f77.h'
+      integer comm
+      integer group
+      integer newcomm
+      integer ierror
+      ierror = MPI_SUCCESS
+      end
+c
+      subroutine MPI_Comm_group(comm,group)
+      implicit none
+      include 'mpi_stubs_f77.h'
+      integer comm
+      integer group
+      integer ierror
+      ierror = MPI_SUCCESS
+      end
+c
+      subroutine MPI_File_close(fh)
+      implicit none
+      include 'mpi_stubs_f77.h'
+      integer fh
+      integer ierror
+      ierror = MPI_SUCCESS
+      end
+c
+      subroutine MPI_File_open(comm,filename,amode,
+     &             info, fh)
+      implicit none
+      include 'mpi_stubs_f77.h'
+      integer comm
+      character(*) filename
+      integer amode
+      integer info
+      integer fh
+      integer ierror
+      ierror = MPI_SUCCESS
+      end
+c
+      subroutine MPI_File_read(fh,buf,count,
+     &             datatype, status)
+      implicit none
+      include 'mpi_stubs_f77.h'
+      integer fh
+      character(*) buf
+      integer count
+      integer datatype
+      integer status
+      integer ierror
+      ierror = MPI_SUCCESS
+      end
+c
+      subroutine MPI_File_set_view(fh,disp,etype,
+     &                filetype,datarep,info)
+      implicit none
+      include 'mpi_stubs_f77.h'
+      integer fh
+      integer disp
+      integer etype
+      integer filetype
+      character(*) datarep
+      integer info
+      integer ierror
+      ierror = MPI_SUCCESS
+      end
+c
+      subroutine MPI_File_write(fh,buf,count,
+     &              datatype,status)
+      implicit none
+      include 'mpi_stubs_f77.h'
+      integer fh 
+      character(*) buf 
+      integer count
+      integer datatype
+      integer status
+      integer ierror
+      ierror = MPI_SUCCESS
+      end
+c
+      subroutine MPI_Gather(sendbuf,sendcount,sendtype,
+     &          recvbuf,recvcount,recvtype,
+     &          root,comm)
+      implicit none
+      include 'mpi_stubs_f77.h'
+      character(*) sendbuf 
+      integer sendcount
+      integer sendtype
+      character(*) recvbuf 
+      integer recvcount 
+      integer recvtype
+      integer root 
+      integer comm
+      integer ierror
+      ierror = MPI_SUCCESS
+      end
+c
+      subroutine MPI_Gatherv(sendbuf,sendcount,sendtype,
+     &           recvbuf,recvcounts,displs,
+     &           recvtype,root,comm)
+      implicit none
+      include 'mpi_stubs_f77.h'
+      character(*) sendbuf
+      integer sendcount
+      integer sendtype
+      character(*) recvbuf
+      integer recvcounts
+      integer displs
+      integer recvtype 
+      integer root
+      integer comm
+      integer ierror
+      ierror = MPI_SUCCESS
+      end
+c
+      subroutine MPI_Group_free(group)
+      implicit none
+      include 'mpi_stubs_f77.h'
+      integer group
+      integer ierror
+      ierror = MPI_SUCCESS
+      end
+c
+      subroutine MPI_Group_incl(group,n,ranks,newgroup)
+      implicit none
+      include 'mpi_stubs_f77.h'
+      integer group
+      integer n
+      integer ranks(*)
+      integer newgroup
+      integer ierror
+      ierror = MPI_SUCCESS
+      end
+c
+      subroutine MPI_Scatterv(sendbuf,sendcounts,displs,
+     &            sendtype,recvbuf,recvcount,
+     &            recvtype,root,comm)
+      implicit none
+      include 'mpi_stubs_f77.h'
+      character(*) sendbuf
+      integer sendcounts
+      integer displs
+      integer sendtype
+      character(*) recvbuf
+      integer recvcount
+      integer recvtype
+      integer root
+      integer comm
+      integer ierror
+      ierror = MPI_SUCCESS
+      end
+c
+      subroutine MPI_Type_size(datatype,size)
+      implicit none
+      include 'mpi_stubs_f77.h'
+      integer datatype
+      integer size
+      integer ierror
+      ierror = MPI_SUCCESS
+      end
+c
+c  end svFSI additions here
+c
+c
 c
 c  typedef int MPI_Datatype;
 c

@@ -27,6 +27,10 @@
 # define MPI_MIN 3
 # define MPI_PRODUCT 4
 
+/* svFSI */
+typedef int MPI_Group;
+/* end svFSI */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -86,6 +90,24 @@ int MPI_Waitany ( int count, MPI_Request *request, int *index,
   MPI_Status *status );
 double MPI_Wtick ( void );
 double MPI_Wtime ( void );
+
+/* svFSI */
+int MPI_Alltoall(const void *sendbuf, int sendcount, MPI_Datatype sendtype,
+                 void *recvbuf, int recvcount, MPI_Datatype recvtype,
+                 MPI_Comm comm);
+int MPI_Alltoallv(const void *sendbuf, const int *sendcounts,
+                  const int *sdispls, MPI_Datatype sendtype, void *recvbuf,
+                  const int *recvcounts, const int *rdispls, MPI_Datatype recvtype,
+                  MPI_Comm comm);
+int MPI_Scatterv(const void *sendbuf, const int *sendcounts, const int *displs,
+                 MPI_Datatype sendtype, void *recvbuf, int recvcount,
+                 MPI_Datatype recvtype,
+                 int root, MPI_Comm comm);
+int MPI_Comm_group(MPI_Comm comm, MPI_Group *group);
+int MPI_Group_excl(MPI_Group group, int n, const int ranks[], MPI_Group *newgroup);
+int MPI_Comm_create(MPI_Comm comm, MPI_Group group, MPI_Comm *newcomm);
+int MPI_Group_free(MPI_Group *group);
+/* end svFSI */
 
 #ifdef __cplusplus
 }
